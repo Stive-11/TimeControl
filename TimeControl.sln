@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE12335F-A9DA-4BD3-9D85-472A1E23DC34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{55756552-81C9-4BAA-A514-1BD9C524A3D9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TimeControl", "src\TimeControl\TimeControl.xproj", "{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{58ED6D02-2D64-4DAE-8510-BFD46BBC7B67} = {EE12335F-A9DA-4BD3-9D85-472A1E23DC34}
+	EndGlobalSection
+EndGlobal
