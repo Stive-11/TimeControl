@@ -1,0 +1,68 @@
+﻿<div class="container-fluid">
+    <h1>{{message}}</h1>
+    <br/>
+    <div class="row">
+        <h3>Create new Task</h3>
+        <form class="form-inline" (ngSubmit)="addTask()" #taskForm="ngForm">
+            <div class="form-group">
+                <label for="TaskName">Name</label>
+                <input type="text" class="form-control" id="TaskName" placeholder="Name of the task ..." name="name" [(ngModel)]="task.name" required>
+            </div>
+            <div class="form-group">
+                <label for="TaskTime">Time</label>
+                <input type="number" class="form-control" id="TaskTime" placeholder="Task time ..." name="time" [(ngModel)]="task.time" required>
+            </div>
+            <div class="form-group">
+                <label for="TaskDate">Date</label>
+                <input type="date" class="form-control" id="TaskDate" placeholder="Task date ..." name="date" [(ngModel)]="task.date" required>
+            </div>
+            <div class="form-group">
+                <label for="TaskProjectId">Project</label>
+                <select [(ngModel)]="task.projectId" id="TaskProjectId" name="projectTask" class="form-control">
+                    <option *ngFor="let pr of projects" [value]="pr.id">{{pr.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TaskWorkerId">Worker</label>
+                <select [(ngModel)]="task.workerId" id="TaskWorkerId" name="worker" class="form-control">
+                    <option *ngFor="let wr of workers" [value]="wr.id">{{wr.name}}</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!taskForm.valid">Create</button>
+        </form>
+    </div>
+    <br/>
+    <div class="row" *ngIf="tasks.length > 0">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Project</th>
+                        <th>Worker</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                        <th class="text-right"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{task.name}}</td>
+                        <td>{{task.project}}</td>
+                        <td>{{task.worker}}</td>
+                        <td>{{task.time}}</td>
+                        <td>{{task.date | date:'dd-MM-yyyy'}}</td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-xs btn-danger" (click)="deleteTask(task)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" *ngIf="tasks.length <= 0">
+        <span>No items found</span>
+    </div>
+</div>

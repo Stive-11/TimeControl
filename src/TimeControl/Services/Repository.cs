@@ -39,8 +39,8 @@ namespace TimeControl.Services
 
                 _context.Tasks.Remove(foundTask);
                 _context.SaveChanges();
-
-                throw new Exception("Task could not be deleted");
+                return;
+               
             }
             catch (Exception)
             {
@@ -105,16 +105,33 @@ namespace TimeControl.Services
             return _context.Workers.Select(w => w).ToArray();
         }
 
-        public IEnumerable<Db.Task> GetTasks()
+        public IEnumerable<Responses.TableTask> GetTasks()
         {
-            return _context.Tasks.Select(t => t).ToArray();
+            return _context.Tasks.Select(t => new Responses.TableTask
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Project = t.Project.Name,
+                Worker = t.Worker.Name,
+                Date = t.Date,
+                Time = t.Time
+            }).ToArray();
         }
 
-        public IEnumerable<Db.Task> GetTasks(Requests.Report dates)
+        public IEnumerable<Responses.TableTask> GetTasks(Requests.Report dates)
         {
+            var finishTime = dates.FinishTime.AddDays(1).AddMilliseconds(-1);
             return _context.Tasks
-                    .Select(t => t)
-                    .Where(p => p.Date >= dates.StartTime && p.Date <= dates.FinishTime)
+                    .Select(t => new Responses.TableTask
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        Project = t.Project.Name,
+                        Worker = t.Worker.Name,
+                        Date = t.Date,
+                        Time = t.Time
+                    })
+                    .Where(p => p.Date >= dates.StartTime && p.Date <= finishTime)
                     .ToArray();
         }
     }

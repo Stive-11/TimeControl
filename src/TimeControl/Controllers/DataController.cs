@@ -26,7 +26,7 @@ namespace TimeControl.Controllers
                 var projects = _repository.GetProjects();
                 return Ok(projects);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest("Projects list could not be sent");
             }

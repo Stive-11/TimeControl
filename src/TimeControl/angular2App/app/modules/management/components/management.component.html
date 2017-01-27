@@ -1,0 +1,72 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <h1>Projects</h1>
+            <div class="row">
+                <form class="form-inline" (ngSubmit)="addProject()" #projectForm="ngForm">
+                    <div class="form-group">
+                        <label class="sr-only" for="inputProjectName">Enter project name</label>
+                        <input type="text" class="form-control" id="inputProjectName" placeholder="Name of the project ..." name="project" [(ngModel)]="project.name"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Create new Project</button>
+                </form>
+            </div>
+            <div class="row" *ngIf="projects.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pr of projects; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{pr.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" *ngIf="projects.length <= 0">
+                <span>No items found</span>
+            </div>
+        </div>
+        <div class="col-md-5 col-md-offset-2">
+            <h1>Workers</h1>
+            <div class="row">
+                <form class="form-inline" (ngSubmit)="addWorker()" #workerForm="ngForm">
+                    <div class="form-group">
+                        <label class="sr-only" for="inputWorkerName">Enter worker name</label>
+                        <input type="text" class="form-control" id="inputWorkerName" placeholder="Name of the worker ..." name="worker" [(ngModel)]="worker.name"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!workerForm.valid">Create new Worker</button>
+                </form>
+            </div>
+            <div class="row" *ngIf="workers.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let wr of workers; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{wr.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" *ngIf="workers.length <= 0">
+                <span>No items found</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -316,15 +316,5 @@ aot/
 **/angular2App/*.js
 **/angular2App/*.map
 
-src/TimeControl/wwwroot/*.*
-src/TimeControl/wwwroot/assets/glyphicons-halflings-regular-448c34.woff2
-src/TimeControl/wwwroot/assets/glyphicons-halflings-regular-898896.svg
-src/TimeControl/wwwroot/assets/glyphicons-halflings-regular-e18bbf.ttf
-src/TimeControl/wwwroot/assets/glyphicons-halflings-regular-f4769f.eot
-src/TimeControl/wwwroot/assets/glyphicons-halflings-regular-fa2772.woff
-src/TimeControl/wwwroot/dist/app.bundle.js
-src/TimeControl/wwwroot/dist/app.bundle.js.map
-src/TimeControl/wwwroot/dist/polyfills.bundle.js
-src/TimeControl/wwwroot/dist/polyfills.bundle.js.map
-src/TimeControl/wwwroot/favicon.ico
-src/TimeControl/wwwroot/index.html
+src/TimeControl/wwwroot/
+

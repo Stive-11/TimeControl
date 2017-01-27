@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using TimeControl.Data;
 using TimeControl.Models;
 
@@ -21,7 +23,7 @@ namespace TimeControl.Services
             {
                 ListProjects = new List<Reports.Project>()
             };
-            var projects = _context.Projects.Select(p => p);
+            var projects = _context.Projects.Select(p => p).ToArray();
 
             foreach (var project in projects)
             {
@@ -46,7 +48,7 @@ namespace TimeControl.Services
 
             if (tasks.Any())
             {
-                var workers = _context.Workers.Select(w => w);
+                var workers = _context.Workers.Select(w => w).ToArray();
                 foreach (var worker in workers)
                 {
                     var time = tasks.Where(w => w.WorkerId == worker.Id).Sum(p => p.Time);
@@ -71,7 +73,7 @@ namespace TimeControl.Services
             if (!tasks.Any())
                 return report;
 
-            var projects = _context.Projects.Select(p => p);
+            var projects = _context.Projects.Select(p => p).ToArray();
             foreach (var project in projects)
             {
                 report.ListProjectsCountWorkerses.Add(new Reports.ProjectCountWorkers
@@ -84,13 +86,15 @@ namespace TimeControl.Services
             return report;
         }
 
-        private IQueryable<Db.Task> GetTasks(Requests.Report dates)
+        private IEnumerable<Db.Task> GetTasks(Requests.Report dates)
         {
             if (dates == null)
             {
-                return _context.Tasks.Select(t => t);
+                return _context.Tasks.Select(t => t).ToArray();
             }
-            return _context.Tasks.Where(p => p.Date >= dates.StartTime && p.Date <= dates.FinishTime);
+            
+            var finishTime = dates.FinishTime.AddDays(1).AddMilliseconds(-1);
+            return _context.Tasks.Where(p => p.Date >= dates.StartTime && p.Date <= finishTime).ToArray();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace TimeControl
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IRepository, Repository>();
+            services.AddScoped<IRepository, Repository>();
             services.AddScoped<IReportCreator, ReportCreator>();
             services.AddMvc();
         }

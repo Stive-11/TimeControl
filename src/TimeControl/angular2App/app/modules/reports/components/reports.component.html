@@ -1,0 +1,110 @@
+﻿<div class="container-fluid">
+    <h1>{{message}}</h1>
+
+    <div class="row">
+        <form class="form-inline" (ngSubmit)="getAllPeriodReports()" #periodForm="ngForm">
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" class="form-control" name="StartDate" [(ngModel)]="startTime" required>
+            </div>
+            <div class="form-group">
+                <label >Finish Date</label>
+                <input type="date" class="form-control" name="FinishDate" [(ngModel)]="finishTime" required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!periodForm.valid">Get reports for period</button>
+            <button type="button" class="btn btn-primary" (click)="getAllReports()">Get all time reports</button>
+        </form>
+    </div>
+    <br>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#ProjectsReport">Projects Report</a></li>
+        <li><a data-toggle="tab" href="#WorkersReport">Workers Report</a></li>
+        <li><a data-toggle="tab" href="#ProjectCounts">Project counts workers report</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="ProjectsReport" class="tab-pane fade in active">
+            <h3>Projects Report</h3>
+            <div class="row" *ngIf="reportProjects.listProjects.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Amount time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let project of reportProjects.listProjects; let i1 = index">
+                            <td>{{i1+1}}</td>
+                            <td>{{project.name}}</td>
+                            <td>{{project.time}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" *ngIf="reportProjects.listProjects.length <= 0">
+                <span>No items found</span>
+                <button type="button" class="btn btn-xs btn-primary" (click)="getReportProjects()">Get Projects report</button>
+            </div>
+        </div>
+
+        <div id="WorkersReport" class="tab-pane fade">
+            <h3>Workers Report</h3>
+            <div class="row" *ngIf="reportWorkers.listWorkers.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Worker name</th>
+                                <th>Amount time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let worker of reportWorkers.listWorkers; let i2 = index">
+                                <td>{{i2+1}}</td>
+                                <td>{{worker.name}}</td>
+                                <td>{{worker.time}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" *ngIf="reportWorkers.listWorkers.length <= 0">
+                <span>No items found</span>
+                <button type="button" class="btn btn-xs btn-primary" (click)="getReportWorkers()">Get Workers report</button>
+            </div>
+        </div>
+        <div id="ProjectCounts" class="tab-pane fade">
+            <h3>Project counts workers report</h3>
+            <div class="row" *ngIf="projectCountsWorkers.listProjectsCountWorkerses.length > 0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Project</th>
+                                <th>Count workers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let projectCount of projectCountsWorkers.listProjectsCountWorkerses; let i3 = index">
+                                <td>{{i3+1}}</td>
+                                <td>{{projectCount.name}}</td>
+                                <td>{{projectCount.count}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" *ngIf="projectCountsWorkers.listProjectsCountWorkerses.length <= 0">
+                <span>No items found</span>
+                <button type="button" class="btn btn-xs btn-primary" (click)="getProjectCountsWorkers()">Get Project counts workers report</button>
+            </div>
+        </div>
+    </div>
+</div>
